@@ -74,3 +74,26 @@ function checkChoice(s){
     return (Choices.includes(str));
 }
 
+function game(){
+    let player1Counter=0;
+    let computerCounter=0;
+    for(let i = 0 ; i < 5 ; i++){
+        let playerSelection = window.prompt("Enter rock or paper or scissors");
+        let result = play(playerSelection,getComputerChoice());
+        console.log(result);
+        if(/Win/.test(result)){
+            player1Counter++;
+        }else if(/Lose/.test(result)){
+            computerCounter++;
+        }
+    }
+    if(player1Counter>computerCounter){
+        console.log("you won "+player1Counter+" matches");
+    }else if(player1Counter<computerCounter){
+        console.log("you lost the computer won "+ computerCounter+" matches");
+    }else{
+        console.log("it is a tie you won "+player1Counter+"matches and the computer won "+computerCounter+" matches");
+    }
+    
+}
+game();
