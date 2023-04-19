@@ -74,7 +74,7 @@ function checkChoice(s){
     return (Choices.includes(str));
 }
 
-function game(){
+/*function game(){
     let player1Counter=0;
     let computerCounter=0;
     for(let i = 0 ; i < 5 ; i++){
@@ -96,4 +96,47 @@ function game(){
     }
     
 }
-game();
+game();*/
+let player1Counter=0;
+let computerCounter=0;
+
+const result = document.querySelector(".score")
+console
+const buttons = document.querySelectorAll("button");
+const playAgain = document.getElementById("again");
+let numberOfGames = document.querySelectorAll("p").length;
+buttons.forEach(btn=>btn.addEventListener("click",function(){
+    if(numberOfGames <5){
+        let res = document.createElement("p");
+        let winner = play(this.id,getComputerChoice())
+        res.innerText = winner;
+        if(/Win/.test(winner)){
+            player1Counter++;
+        }else if(/Lose/.test(winner)){
+            computerCounter++;
+        }
+        result.append(res);
+    }
+    numberOfGames = document.querySelectorAll("p").length;
+    if(numberOfGames==5){
+        let res = document.createElement("p");
+        if(player1Counter>computerCounter){
+            res.innerText  = `you won ${player1Counter} matches`;
+        }else if(player1Counter<computerCounter){
+            res.innerText  = `you lost the computer won ${computerCounter} matches`;
+        }else{
+            res.innerText =`it is a tie you won ${player1Counter} matches and the computer won ${computerCounter} matches`;
+        }
+        result.append(res);
+        playAgain.style.display = "block";
+    }
+}))
+
+playAgain.addEventListener("click",function(){
+    player1Counter=0;
+    computerCounter=0;
+    let results = document.querySelectorAll("p");
+    results.forEach(el=>el.remove());
+    numberOfGames = document.querySelectorAll("p").length;
+    playAgain.style.display = "none";
+})
